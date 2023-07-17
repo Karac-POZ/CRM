@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h2 class="display-6 text-center mb-4">Категории</h2>
+    <p class="display-6 text-center mb-4">Эти категории разбивают лидов на</p>
+    <div class="container mx-4 px-5">
+      <div class="table-responsive mx-5 px-5">
+          <table class="table table-hover">
+            <thead class="table-primary">
+              <tr>
+                <th style="width: 75%;">Название</th>
+                <th style="width: 25%;">Количество лидов</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                  <td>Неназначенные лиды</td>
+                  <td>{{ unassigned_lead_count }}</td>
+              </tr>
+              {% comment %} {% for category in category_list %}
+                  <tr>
+                      <td>
+                          <a href="{% url 'leads:category-detail' category.pk %}" class="nav-link">
+                              {{ category.name }}
+                          </a>
+                      </td>
+                      <td>TODO count</td>
+                  </tr>
+              {% endfor %} {% endcomment %}
+
+              {% for ret in reset %}
+                  <tr>
+                      <td>
+                          <a href="{% url 'leads:category-detail' ret.id %}" class="nav-link">
+                              {{ ret.name }}
+                          </a>
+                      </td>
+                      <td> {{ ret.number }} </td>
+                  </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+      </div>
+  </div>
+
+{% endblock content %}

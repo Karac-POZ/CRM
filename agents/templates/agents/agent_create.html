@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <a href="{% url 'agents:agent-list' %}" class="nav-link">
+        Назад к списку агентов
+    </a>
+    <hr>
+    <h1>Создать нового агента</h1>
+    <form method="post" class="card p-3 mt-5">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-6">
+                {{ form.first_name|as_crispy_field }}
+            </div>
+            <div class="col-6">
+                {{ form.last_name|as_crispy_field }}
+            </div>
+        </div>
+
+        {{ form.username|as_crispy_field }}
+        {{ form.email|as_crispy_field }}
+        <button type="submit" class="btn btn-primary mt-2">
+            Подтвердить
+        </button> 
+    </form>
+
+{% endblock content %}

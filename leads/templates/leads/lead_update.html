@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="card">
+    <div class="card-header">
+        <div class='d-flex align-items-center mx-3'>
+            <h2 class="me-auto">
+                Лид {{ lead.first_name }} {{lead.last_name}}
+            </h2>
+            <a href="{% url 'leads:lead-list' %}" class="nav-link">
+                Назад к списку лидов
+            </a>
+        </div>
+        <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'leads:lead-detail' lead.pk %}">
+                    Подробности лида
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'leads:category-update' lead.pk %}">
+                    Категория
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'leads:lead-update' lead.pk %}" aria-current="true" class="nav-link active">
+                    Изменить подробности лида
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body mx-3">
+        <form method="post" class="card py-3 mt-2 border-0 border-bottom border-dark">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary mt-2">
+                Подтвердить
+            </button> 
+        </form>
+        <a href="{% url 'leads:lead-delete' lead.pk %}" class="btn btn-danger mt-3">
+            Удалить лида
+        </a>
+        {% comment %} <h5 class="card-title">{{ lead.first_name }} {{lead.last_name}}</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <div class="d-flex border-top border-dark py-2">
+            <span class="me-auto">Возраст:</span>
+            <span> {{lead.age}} </span>
+        </div>
+        <div class="d-flex border-top border-dark py-2">
+            <span class="me-auto">Местонахождение:</span>
+            <span> Где-то </span>
+        </div>
+        <div class="d-flex border-top border-bottom border-dark py-2">
+            <span class="me-auto">Телефон:</span>
+            <span>+7 758 658 5159</span>
+        </div> {% endcomment %}
+    </div>
+</div>
+{% endblock content %}

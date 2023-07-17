@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class='d-flex align-items-center border-bottom border-dark my-5 py-3'>
+        <h1 class="me-auto">
+            Агенты
+        </h1>
+        <a href="{% url 'agents:agent-create' %}" class="nav-link">
+            Создать нового агента
+        </a>
+    </div>
+
+    {% comment %} <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for agent in object_list %}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h2>
+                            {{ agent.user.username }}
+                        </h2>
+                        <p class="card-text">
+                            This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href="{% url 'agents:agent-detail' agent.pk %}" class="btn btn-sm btn-outline-secondary">
+                                    Посмотреть на агента
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        {% empty %}
+
+        <p>В данный момент нет никаких агентов</p>
+        
+        {% endfor %}
+    </div> {% endcomment %}
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="table-primary">
+            <tr>
+              <th style="width: 40%;">Полное имя</th>
+              <th style="width: 40%;">Почта</th>
+              <th style="width: 20%;"></th>
+            </tr>
+          </thead>
+          {% for agent in object_list %}
+              <tbody>
+              <tr>
+                  <td>
+                      <a href="{% url 'agents:agent-detail' agent.pk %}" class="nav-link">
+                          {{ agent.user.first_name }} {{ agent.user.last_name }}
+                      </a>
+                  </td>
+                  <td>
+                      {{ agent.user.email }}
+                  </td>
+                  <td>
+                      <a href="{% url 'agents:agent-update' agent.pk %}" class="link-primary nav-link">
+                          Редактировать
+                      </a>
+                  </td>
+              </tr>
+              </tbody>
+  
+          {% empty %}
+  
+          <p>В данный момент нет никаких агентов</p>
+  
+          {% endfor %}
+        </table>
+    </div>
+
+{% endblock content %}

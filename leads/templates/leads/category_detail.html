@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h2 class="display-6 text-center mb-4">
+        {{ category.name }}
+    </h2>
+    <p class="display-6 text-center mb-4">
+        Эти лиды относятся к данной категории
+    </p>
+    <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="table-primary">
+            <tr>
+              <th>Имя</th>
+              <th>Фамилия</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for lead in category.leads.all %}
+                <tr>
+                    <td>
+                      <a href="{% url 'leads:lead-detail' lead.pk %}" class="nav-link">
+                        {{ lead.first_name }}
+                      </a>
+                    </td>
+                    <td>{{ lead.last_name }}</td>
+                </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+{% endblock content %}

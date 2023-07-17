@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="card">
+        <div class="card-header">
+            <div class='d-flex align-items-center mx-3'>
+                <h2 class="me-auto">
+                    Агент {{ agent.user.username }}
+                </h2>
+                <a href="{% url 'agents:agent-list' %}" class="nav-link">
+                    Назад к списку агентов
+                </a>
+            </div>
+            <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="true" href="{% url 'agents:agent-detail' agent.pk %}">
+                        Подробности агента
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'agents:agent-update' agent.pk %}" class="nav-link">
+                        Изменить подробности агента
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body my-3">
+            <div class="d-flex py-2 mx-3">
+                <span class="me-auto">Полное имя:</span>
+                <span> {{ agent.user.first_name }} {{ agent.user.last_name }} </span>
+            </div>
+            <div class="d-flex border-top border-bottom border-dark py-2 mx-3">
+                <span class="me-auto">Почта:</span>
+                <span>{{ agent.user.email }}</span>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

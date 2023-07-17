@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <a href="{% url 'leads:lead-list' %}" class="nav-link">
+        Назад к списку лидов
+    </a>
+    <hr>
+    <h1>Создать нового лида</h1>
+    <form method="POST" class="card p-3 mt-5">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-6">
+                {{ form.first_name|as_crispy_field }}
+            </div>
+            <div class="col-6">
+                {{ form.last_name|as_crispy_field }}
+            </div>
+            <div class="col-6">
+                {{ form.age|as_crispy_field }}
+            </div>
+            <div class="col-6">
+                {{ form.agent|as_crispy_field }}
+            </div>
+            <div class="col-6">
+                {{ form.email|as_crispy_field }}
+            </div>
+            <div class="col-6">
+                {{ form.number|as_crispy_field }}
+            </div>
+        </div>
+
+        {{ form.review|as_crispy_field }}
+
+        {% comment %} {{ form|crispy}} {% endcomment %}
+        <button type="submit" class="btn btn-primary mt-2">
+            Подтвердить
+        </button> 
+    </form>
+
+{% endblock content %}

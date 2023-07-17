@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <a href="{% url 'leads:lead-list' %}" class="nav-link">
+        Назад к списку лидов
+    </a>
+    <hr>
+    <h1>Выберите агента для данного лида</h1>
+    <form method="POST" class="card p-3 mt-5">
+        {% csrf_token %}
+        {{ form|crispy}}
+        <button type="submit" class="btn btn-primary mt-2">
+            Подтвердить
+        </button> 
+    </form>
+
+{% endblock content %}

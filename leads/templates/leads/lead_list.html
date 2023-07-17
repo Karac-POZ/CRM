@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% comment %} <div class='d-flex align-items-center border-bottom border-dark my-5 py-3'>
+        <h1 class="me-auto">
+            Лиды
+        </h1>
+        <a href="{% url 'leads:category-list' %}" class="nav-link me-3 pe-2">
+            Посмотреть категории
+        </a>
+        {% if request.user.is_director %}
+        <a href="{% url 'leads:lead-create' %}" class="nav-link">
+            Создать нового лида
+        </a>
+        {% endif %}
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for lead in leads %}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h2>{{ lead.first_name }} {{ lead.last_name }}</h2>
+                        <p class="card-text">
+                            This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href="{% url 'leads:lead-detail' lead.pk %}" class="btn btn-sm btn-outline-secondary">
+                                    Посмотреть на лида
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% empty %}
+
+        <p>В данный момент нет никаких лидов</p>
+
+        {% endfor %}
+    </div>
+        {% if unassigned_leads.exists %}
+            <div class='d-flex align-items-center border-bottom border-dark my-5 py-3'>
+                <h1 class="me-auto">
+                    Неназначенные лиды
+                </h1>
+            </div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for lead in unassigned_leads %}
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h2>{{ lead.first_name }} {{ lead.last_name }}</h2>
+                            <p class="card-text">
+                                {{ lead.review }}
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="{% url 'leads:pick-agent' lead.pk %}" class="btn btn-sm btn-outline-secondary">
+                                        Назначьте агента
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}    
+        {% endif %}
+    </div> {% endcomment %}
+
+    <div class='d-flex align-items-center border-bottom border-dark my-5 py-3'>
+        <h1 class="me-auto">
+            Лиды
+        </h1>
+        <a href="{% url 'leads:category-list' %}" class="nav-link me-3 pe-2">
+            Посмотреть категории
+        </a>
+        {% if request.user.is_director %}
+        <a href="{% url 'leads:lead-create' %}" class="nav-link">
+            Создать нового лида
+        </a>
+        {% endif %}
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead class="table-primary">
+          <tr>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Возраст</th>
+            <th>Почта</th>
+            <th>Телефон</th>
+            <th>Категория</th>
+            <th></th>
+          </tr>
+        </thead>
+        {% for lead in leads %}
+            <tbody>
+            <tr>
+                <td>
+                    <a href="{% url 'leads:lead-detail' lead.pk %}" class="nav-link">
+                        {{ lead.first_name }}
+                    </a>
+                </td>
+                <td>
+                    {{ lead.last_name }}
+                </td>
+                <td>
+                    {{ lead.age }}
+                </td>
+                <td>
+                    {{ lead.email }}
+                </td>
+                <td>
+                    {{ lead.number }}
+                </td>
+                <td>
+                    {% if lead.category %}
+                        <span class="boreder rounded-pill">
+                            {{ lead.category.name }}
+                        </span>
+                    {% else %}
+                        <span class="rounded-pill">
+                            Не выбрана категория
+                        </span>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'leads:lead-update' lead.pk %}" class="link-primary nav-link">
+                        Редактировать
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+
+        {% empty %}
+
+        <p>В данный момент нет никаких лидов</p>
+
+        {% endfor %}
+      </table>
+    </div>  
+    
+    {% if unassigned_leads.exists %}
+            <div class='d-flex align-items-center border-bottom border-dark my-5 py-3'>
+                <h1 class="me-auto">
+                    Неназначенные лиды
+                </h1>
+            </div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for lead in unassigned_leads %}
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h2>{{ lead.first_name }} {{ lead.last_name }}</h2>
+                            <p class="card-text">
+                                {{ lead.review }}
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="{% url 'leads:pick-agent' lead.pk %}" class="btn btn-sm btn-outline-secondary">
+                                        Назначьте агента
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}    
+        {% endif %}
+{% endblock content %}
