@@ -1,4 +1,4 @@
-# Karac CRM - A Modern Customer Relationship Management System
+# Karac CRM - Customer Relationship Management System
 
 ## Overview
 Karac CRM is a comprehensive, web-based customer relationship management system designed to streamline interactions between businesses and their customers. This project was developed as part of a diploma work and aims to provide an efficient platform for managing customer data, improving communication, and enhancing overall business operations.
