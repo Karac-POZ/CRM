@@ -13,5 +13,5 @@ Karac CRM is a comprehensive, web-based customer relationship management system 
 ### Technical Details:
 
 *   **Frontend**: Built with HTML5, CSS3, and JavaScript (React.js) for a responsive and user-friendly interface.
-*   **Backend**: Utilizes Flask, a Python-based microframework, for efficient API management and data processing. Database interaction is managed through the `psycopg2` library for seamless integration with PostgreSQL.
+*   **Backend**: Utilizes Django, a Python-based framework. Database interaction is managed through the `psycopg2` library for seamless integration with PostgreSQL.
 *   **Database**: Leverages PostgreSQL for robustness and scalability in production environments.
